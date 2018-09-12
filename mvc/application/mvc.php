@@ -1,6 +1,10 @@
 <?php 
-	require 'load.php';
-	require 'model.php';
-	require 'controller.php';
-	new Controller;
- ?>
+
+require 'load.php';
+require 'database.php';
+require 'model.php';
+require 'controller.php';
+
+new Controller;
+
+?>
