@@ -22,3 +22,5 @@ Route::get('hello', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/add_photo', 'PhotoController@create')->name('addPhoto');
+Route::post('/add_photo', 'PhotoController@store')->name('photos.save');

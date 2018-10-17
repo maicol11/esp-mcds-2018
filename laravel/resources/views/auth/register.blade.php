@@ -6,7 +6,7 @@
       <div class="col-md-6">
 
         <div class="card-header card-header-instalara">REGISTRO DE USUARIOS</div>
-
+        
         <div class="card-body">
           <form method="POST" action="{{ route('register') }}">
             @csrf
