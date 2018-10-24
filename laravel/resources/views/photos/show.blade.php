@@ -19,7 +19,7 @@
             </strong>
             @foreach ($comments as $comment)
 
-                <p><a class="btn-link-instalara" href="{{url('profile/'.$comment->user->nickname)}}">{{$comment->user->nickname}}:</a> {{$comment->message}}</p>
+                <p class="text-left"><a class="btn-link-instalara" href="{{url('profile/'.$comment->user->nickname)}}">{{$comment->user->nickname}}:</a> {{$comment->message}}</p>
             @endforeach
             <hr>
             <form  action="{{url('comment/add')}}" method="POST">
