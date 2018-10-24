@@ -1,32 +1,46 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Http\Requests\PhotoRequest;
-use Intervention\Image\ImageManagerStatic as Image;
 use App\Photo;
 use Auth;
+use Intervention\Image\ImageManagerStatic as Image;
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class PhotoController extends Controller
 {
-    public function create(){
-        return view('photos.create');
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
-    public function store(PhotoRequest $request){
-        $photo = new Photo;
-        if ($request->hasFile('photo')) {
-            $url = Storage::put('/photos', $request->file('photo'));
-            $photo->url = $url;
-        }
-        $photo->description = $request->get('description');
-        $photo->user()->associate(Auth::user()->id);
-
-        if ($photo->save()) {
-            // return redirect('home')->with("Exito", $message);
-        }
+    public function create() {
+    	return view('photos.create');
     }
+
+    public function save(PhotoRequest $request) {
+    	//dd($request);
+    	$photo = new Photo;
+    	if($request->hasFile('photo')) {
+    		$nphoto    = time().'.'.$request->photo->extension();
+	        $directory = public_path('/imgs/');
+	        $url       = $directory.$nphoto;
+	        $img = Image::make($request->file('photo'));
+            $img->resize(500, 500)->insert(public_path('/imgs/watermark.png'), 'top-left', 20, 20)->save($url);
+    	}
+    	$photo->url = '/imgs/'.$nphoto;
+    	$photo->user_id = Auth::user()->id;
+    	$photo->description = $request->get('description');
+
+    	if ($photo->save()) {
+    		return redirect('home')->with('status', 'La Foto se adiciono con exito!');
+    	}
+
+    }
+
+    public function show($id) {
+       $photo = Photo::find($id);
+       return view('photos.show')->with('photo', $photo);
+   }
 }

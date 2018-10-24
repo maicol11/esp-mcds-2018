@@ -24,8 +24,15 @@ class PhotoRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|image',
+            'photo'       => 'required|image',
             'description' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'photo.required'       => 'El campo Foto es requerido.',
+            'description.required' => 'El campo Descripción es requerido.',
         ];
     }
 }

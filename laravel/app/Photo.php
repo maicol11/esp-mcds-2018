@@ -9,8 +9,4 @@ class Photo extends Model
     protected $fillable = [
         'url', 'user_id', 'description',
     ];
-
-    public function user() {
-        return $this->belongsTo('App\User');
-    }
 }

@@ -7,7 +7,6 @@
 	margin-left: 4px;
 	transition: all 0.5s;
 }
-
 .btn-instalara:hover,
 .btn-outline-top-instalara:hover {
 	background-color: #00c2cb;
@@ -22,9 +21,7 @@
 
 .btn-link-instalara {
 	color: #00c2cb;
-
 }
-
 .btn-link-instalara:hover {
-	color: #08adb5;
+	color: #049999;
 }
