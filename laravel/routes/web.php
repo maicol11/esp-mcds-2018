@@ -29,3 +29,4 @@ Route::post('save', 'PhotoController@save')->name('save');
 Route::get('profile/{nickname}', 'HomeController@profile')->name('profile');
 
 Route::get('photo/{id}', 'PhotoController@show');
+Route::post('comment/add', 'PhotoController@addComment');
